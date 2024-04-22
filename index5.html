@@ -1,0 +1,234 @@
+<html>
+<head>
+    <title>My quiz</title>
+    <meta charset="utf-8">
+    <link rel= "shortcut icon" type= "image/x- icon" href="favicon.ico"/>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+   
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="my4.css">
+</head>
+<body>
+
+    <div id="main" >
+        <div class="title1">
+            <h1>Διάλεξε το είδος του λογαριασμού σου.</h1>
+        </div>
+
+        <div class="usertype">
+            <div class="row">
+              
+                <div class="col-md-offset-1 col-md-3 icon1" id="admin">
+                    <img src="my_images/10.jpg"><br>
+                    Admin
+                </div>
+
+                <div class="col-md-offset-1 col-md-3 icon1" id="professor">
+                    <img src="my_images/2.jpg"><br>
+                    Professor
+                </div>
+               
+                <div class="col-md-offset-1 col-md-3 icon1" id="student">
+                    <img src="my_images/17.png"><br>
+                    Student
+                </div>
+             
+          
+        </div>
+
+
+        <div class="minima1">
+            <h1>Παρακαλώ συμπληρώστε την παρακάτω φόρμα:</h1>
+        </div>
+        <div class="form">
+        
+            <div class="col-md-offset-2 col-md-8">
+                <form id="form2">
+
+                  
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                          <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+                        </div>
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                          <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                        </div>
+                        <div id="msgl"></div>
+                        <div class="btn1">
+                            <div class="row">
+                            <div class="col-md-6 text-left">
+                               Αν δεν έχετε λογαριασμό:
+                               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Εγγραφή</button>
+                            </div>
+
+                            <div class="col-md-6 text-right">
+                                <br>
+                                <input type="hidden" name="typeuser" id="typeuser" value="" >
+                                <button type="submit" class="btn btn-success">Σύνδεση</button>
+                            </div>
+                            </div>
+                        
+                        </div>
+
+
+                </form>
+            </div>
+            
+        </div>
+
+    </div>
+
+    
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+<!-- Modal content-->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Εγγραφή</h4>
+    </div>
+    <div class="modal-body">
+        <h1>Παρακαλώ συμπληρώστε την παρακάτω φόρμα για να εγγραφείτε:</h1>
+        <form id="form1" >
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input id="email2" type="email" class="form-control" name="email" placeholder="Email" required>
+            </div><br>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <input id="password2" type="password" class="form-control" name="password" placeholder="Κωδικός" required>
+            </div><br>
+            <div class="input-group">
+              <span class="input-group-addon">Firstname</span>
+              <input id="firstname2" type="text" class="form-control" name="firstname" placeholder="Όνομα" required>
+            </div><br>
+            <div class="input-group">
+                <span class="input-group-addon">Lastname</span>
+                <input id="lastname2" type="text" class="form-control" name="lastname" placeholder="Επώνυμο" required>
+              </div><br>
+            
+              <div id="msgs"></div>
+              <button type="submit" class="btn btn-success">Υποβολή</button> <button type="reset" class="btn btn-danger">Καθαρισμός</button>
+            
+          </form>
+        
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+        </div>
+ </div>
+</div> 
+</div>
+   
+
+    <script>
+
+$("#form2").submit(()=>{
+                    event.preventDefault();
+                    $.post("api.php?c=syndesi",$("#form2").serialize(),(res)=>{
+                        if(res=="ok"){
+                           // alert("ok");
+                            window.location.href="main.php";
+                        }
+                    else{
+                        $("#msgl").html(`<div class="alert alert-danger">
+                                    Λάθος σύνδεση. Έχετε δώσει λάθος στοιχεία.
+                                    </div>`);
+                      }
+                     });
+                })
+
+
+                $("#form1").submit(()=>{
+            event.preventDefault();
+            /*alert(1);*/
+            $.post("api.php?c=signup",$("#form1").serialize(),(res)=>{
+                if(res=="ok"){
+                    $("#msgs").html(`<div class="alert alert-success">
+                                    Η εγγραφή σας είναι επιτυχής.
+                                    </div>`);
+                }
+                else
+                {
+                    $("#msgs").html(`<div class="alert alert-danger">
+                                   Η εγγραφή σας είναι ανεπιτυχής.
+                                    </div>`);
+                }
+            })
+
+        })
+
+        var a=0;
+        
+        $("#admin").click(()=>{
+            if(b==0 && c==0)
+            if(a==0){
+                $("#admin").css("background-color","rgb(125, 168, 153)");
+                a=1;
+                $("#typeuser").val("admin");
+            }
+          
+            else
+            {
+                $("#admin").css("background-color","transparent");
+                a=0;
+                $("#typeuser").val("");
+            }
+        });
+
+        var b=0;
+                    $("#professor").click(()=>{
+                        if(a==0 && c==0)
+                        if(b==0){
+                            $("#professor").css("background-color","rgb(125, 168, 153)");
+                            b=1;
+                            $("#typeuser").val("professor");
+                        }
+                        else
+                        {
+                            $("#professor").css("background-color","transparent");
+                            b=0;
+                            $("#typeuser").val("");
+                            
+                        }
+                    });
+
+                    var c=0;
+                    $("#student").click(()=>{
+                        if(a==0 && b==0)
+                        if(c==0){
+                            $("#student").css("background-color","rgb(125, 168, 153)");
+                            c=1;
+                            $("#typeuser").val("student");
+                        }
+                        else
+                        {
+                            $("#student").css("background-color","transparent");
+                            c=0;
+                            $("#typeuser").val("");
+                            
+                        }
+                    });
+
+                    
+               
+                
+           
+     
+        
+    </script>
+
+</body>

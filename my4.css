@@ -1,0 +1,57 @@
+body{
+    background-image: url("my_images/24.jpg");
+    background-size: 100% 100%;
+    
+  }
+  
+
+.cc1 {
+    background-color: beige;
+    
+    box-shadow: 5px 5px 10px gray;
+    text-align:center;
+}
+
+#main {
+
+    width:60%;
+    height:90vh;
+    margin:auto;
+    background-color: beige;
+    margin-top:10vh;
+    border-radius:20px;
+    box-shadow: 5px 5px 10px gray;
+    padding:40px;
+}
+
+.othoni {
+    width:80%;
+    background-color: beige;
+    margin:auto;
+    box-shadow: 5px 5px 10px gray;
+    padding:20px;
+}
+
+h1 {
+    text-align: center;
+    color:rgb(21, 62, 156);
+    font-size:18pt;
+    margin-bottom:20px;
+}
+
+
+.icon1 {
+    text-align: center;
+    border:1px solid rgb(182, 172, 172);
+    border-radius: 5px;
+    height:100px;
+    cursor: pointer;
+    padding:10px;
+    
+}
+.icon1 img {
+    height:50px;
+}
+.usertype img {
+    height:50px;
+}
