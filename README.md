@@ -1,4 +1,6 @@
-Web Application for Creating Quiz Games. Quiz games are a form of entertainment or mental exercise in which players are asked to answer a series of questions on one or more topics. Quizzes are commonly used in education or similar fields to assess knowledge or measure development in knowledge, skills, or abilities. They can also be broadcasted on television for entertainment purposes, often in the form of game shows.
+This project is under proccess. 
+Web Application for Creating Quiz Games.
+Quiz games are a form of entertainment or mental exercise in which players are asked to answer a series of questions on one or more topics. Quizzes are commonly used in education or similar fields to assess knowledge or measure development in knowledge, skills, or abilities. They can also be broadcasted on television for entertainment purposes, often in the form of game shows.
 
 Within the scope of this thesis, the following are requested:
 
