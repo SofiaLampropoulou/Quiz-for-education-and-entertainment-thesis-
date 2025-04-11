@@ -69,7 +69,7 @@ include "menu.php";
         function showcategories(){
             $.getJSON("api.php?c=allcategories",(res)=>{
                 $("#categories").html("");
-        (for i=0;i<res.length;i++)
+        for (i=0;i<res.length;i++)
         {
             $("#categories").append(`<tr><td>${res[i].name}</td><td><button onclick='delcat(${res[i].id})'>Del</button></td>`)
         }

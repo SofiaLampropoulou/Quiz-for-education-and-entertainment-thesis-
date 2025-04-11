@@ -13,7 +13,7 @@ include "menu.php";
     <div class="othoni">
     <button class="btn btn-primary" data-toggle="modal" data-target="#mathitiModal">Προσθήκη μαθητή</button>
         <table class= "table table-hover">
-        <tr><th>Email</th><th>Όνομα</th><th>Επώνυμο</th></tr>
+        <tr><th>Email</th><th>Κωδικός</th><th>Όνομα</th><th>Επώνυμο</th></tr>
 
 <tbody id="mathites">
 
@@ -72,6 +72,9 @@ include "menu.php";
                     $("#msgs").html(`<div class="alert alert-success">
                                     Η εγγραφή σας είναι επιτυχής.
                                     </div>`);
+                                    $("#mathitiModal").modal("hide");
+                            
+                                    $('#formm')[0].reset();
                                     showstudents();
                 }
                 else
@@ -93,7 +96,7 @@ include "menu.php";
             <td>${res[i].firstname}</td>
             <td>${res[i].lastname}</td>
            
-            <td><button onclick='del(${res[i].id})'>Delete</button></td>`)
+            <td><button onclick='del(${res[i].id})'>Διαγραφή</button></td>`)
         }
         })
     }

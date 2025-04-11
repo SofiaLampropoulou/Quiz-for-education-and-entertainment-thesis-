@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>My quiz</title>
+    <title>Quiz</title>
     <meta charset="utf-8">
     <link rel= "shortcut icon" type= "image/x- icon" href="favicon.ico"/>
         <!-- Latest compiled and minified CSS -->
@@ -69,7 +69,11 @@
                             <div class="row">
                             <div class="col-md-6 text-left">
                                Αν δεν έχετε λογαριασμό:
-                               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Εγγραφή</button>
+                               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Εγγραφή καθηγητή</button>
+                            <br></br>
+                               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#studentModal">Εγγραφή μαθητή</button>
+                               <br></br>
+                               <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#gramModal">Εγγραφή μέλους γραμματείας</button>
                             </div>
 
                             <div class="col-md-6 text-right">
@@ -132,6 +136,98 @@
  </div>
 </div> 
 </div>
+
+<!-- Modal -->
+<div id="studentModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+<!-- Modal content-->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Εγγραφή</h4>
+    </div>
+    <div class="modal-body">
+        <h1>Παρακαλώ συμπληρώστε την παρακάτω φόρμα για να εγγραφείτε:</h1>
+        <form id="form3" >
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input id="email3" type="email" class="form-control" name="email" placeholder="Email" required>
+            </div><br>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <input id="password3" type="password" class="form-control" name="password" placeholder="Κωδικός" required>
+            </div><br>
+            <div class="input-group">
+              <span class="input-group-addon">Firstname</span>
+              <input id="firstname3" type="text" class="form-control" name="firstname" placeholder="Όνομα" required>
+            </div><br>
+            <div class="input-group">
+                <span class="input-group-addon">Lastname</span>
+                <input id="lastname3" type="text" class="form-control" name="lastname" placeholder="Επώνυμο" required>
+              </div><br>
+            
+              <div id="msgs"></div>
+              <button type="submit" class="btn btn-success">Υποβολή</button> <button type="reset" class="btn btn-danger">Καθαρισμός</button>
+            
+          </form>
+        
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+        </div>
+       
+ </div>
+</div> 
+
+</div>
+   
+<!-- Modal -->
+<div id="gramModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+<!-- Modal content-->
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Εγγραφή</h4>
+    </div>
+    <div class="modal-body">
+        <h1>Παρακαλώ συμπληρώστε την παρακάτω φόρμα για να εγγραφείτε:</h1>
+        <form id="form4" >
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+              <input id="email4" type="email" class="form-control" name="email" placeholder="Email" required>
+            </div><br>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              <input id="password4" type="password" class="form-control" name="password" placeholder="Κωδικός" required>
+            </div><br>
+            <div class="input-group">
+              <span class="input-group-addon">Firstname</span>
+              <input id="firstname4" type="text" class="form-control" name="firstname" placeholder="Όνομα" required>
+            </div><br>
+            <div class="input-group">
+                <span class="input-group-addon">Lastname</span>
+                <input id="lastname4" type="text" class="form-control" name="lastname" placeholder="Επώνυμο" required>
+              </div><br>
+            
+              <div id="msgs"></div>
+              <button type="submit" class="btn btn-success">Υποβολή</button> <button type="reset" class="btn btn-danger">Καθαρισμός</button>
+            
+          </form>
+        
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+        </div>
+       
+ </div>
+</div> 
+
+</div>
+   
+
    
 
     <script>
@@ -150,6 +246,53 @@ $("#form2").submit(()=>{
                       }
                      });
                 })
+                $("#form3").submit(()=>{
+            event.preventDefault();
+            /*alert(1);*/
+            $.post("api.php?c=newstudent",$("#form3").serialize(),(res)=>{
+                if(res=="ok"){
+                    $("#msgs").html(`<div class="alert alert-success">
+                                    Η εγγραφή σας είναι επιτυχής.
+                                    </div>`);
+                                     // Close the modal
+            $('#studentModal').modal('hide');
+            // Reset the form
+            $('#form3')[0].reset();
+                                    
+                }
+                else
+                {
+                    $("#msgs").html(`<div class="alert alert-danger">
+                                   Η εγγραφή σας είναι ανεπιτυχής.
+                                    </div>`);
+                }
+            })
+            
+        })
+    
+        $("#form4").submit(()=>{
+            event.preventDefault();
+            /*alert(1);*/
+            $.post("api.php?c=newgram",$("#form4").serialize(),(res)=>{
+                if(res=="ok"){
+                    $("#msgs").html(`<div class="alert alert-success">
+                                    Η εγγραφή σας είναι επιτυχής.
+                                    </div>`);
+                                     // Close the modal
+            $('#gramModal').modal('hide');
+            // Reset the form
+            $('#form4')[0].reset();
+                                    
+                }
+                else
+                {
+                    $("#msgs").html(`<div class="alert alert-danger">
+                                   Η εγγραφή σας είναι ανεπιτυχής.
+                                    </div>`);
+                }
+            })
+            
+        })
 
 
                 $("#form1").submit(()=>{
@@ -160,6 +303,11 @@ $("#form2").submit(()=>{
                     $("#msgs").html(`<div class="alert alert-success">
                                     Η εγγραφή σας είναι επιτυχής.
                                     </div>`);
+                                    // Close the modal
+            $('#myModal').modal('hide');
+            // Reset the form
+            $('#form1')[0].reset();
+                                    
                 }
                 else
                 {
@@ -167,8 +315,9 @@ $("#form2").submit(()=>{
                                    Η εγγραφή σας είναι ανεπιτυχής.
                                     </div>`);
                 }
+                
             })
-
+              
         })
 
         var a=0;

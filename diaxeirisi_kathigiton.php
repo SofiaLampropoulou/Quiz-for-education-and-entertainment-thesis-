@@ -15,7 +15,7 @@ include "menu.php";
     <div class="othoni">
         <button class="btn btn-primary" data-toggle="modal" data-target="#kathModal">Προσθήκη καθηγητή</button>
         <table class= "table table-hover">
-            <tr><th>Email</th><th>Firstname</th><th>Lastname</th></tr>
+            <tr><th>Email</th><th>Κωδικός</th><th>Firstname</th><th>Lastname</th></tr>
 
 <tbody id="professors">
 
@@ -74,6 +74,9 @@ include "menu.php";
                     $("#msgs").html(`<div class="alert alert-success">
                                     Η εγγραφή σας είναι επιτυχής.
                                     </div>`);
+                                    $("#kathModal").modal("hide");
+             
+                                    $('#formk')[0].reset();
                                     showprofessors();
                 }
                 else

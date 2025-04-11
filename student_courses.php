@@ -55,12 +55,22 @@ include "menu.php";
         for (i=0;i<res.length;i++)
         {
             $("#scourse").append(`<tr><td>${res[i].name}</td><td>${res[i].description}</td>
-                    <td><button onclick= "insertmakequiz(${res[i].id})" >Εγγραφή</button></td>`)
+                    <td><button onclick= "insertmakequiz(${res[i].id})" >Εγγραφή</button></td>
+                      <td><button onclick='del(${res[i].id})'>Διαγραφή</button></td>`)
         }
             });
         }
      
-           
+        function del(id)
+        {
+            c=confirm("Θέλετε σίγουρα να διαγράψετε αυτό το μάθημα;");
+            if(c)
+            {
+                $.get("api.php?c=dellesson&id="+id,(res)=>{
+                    showcourses();
+                });
+            }
+        } 
 
         
         showcourses();

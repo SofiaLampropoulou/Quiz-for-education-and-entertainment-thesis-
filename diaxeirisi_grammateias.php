@@ -13,7 +13,7 @@ include "menu.php";
     <div class="othoni">
     <button class="btn btn-primary" data-toggle="modal" data-target="#gramModal">Προσθήκη εργαζομένου στη γραμματεία</button>
         <table class= "table table-hover">
-        <tr><th>Email</th><th>Firstname</th><th>Lastname</th><th>Email</th></tr>
+        <tr><th>Email</th><th>Κωδικός</th><th>Firstname</th><th>Lastname</th><th>Email</th></tr>
 
 <tbody id="grammateia">
 
@@ -75,6 +75,9 @@ include "menu.php";
                     $("#msgs").html(`<div class="alert alert-success">
                                     Η εγγραφή σας είναι επιτυχής.
                                     </div>`);
+                                    $("#gramModal").modal("hide");
+             
+                                     $('#formgr')[0].reset();
                                     showgram();
                 }
                 else

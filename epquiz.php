@@ -17,7 +17,7 @@ include "menu.php";
    
     <button class="btn btn-primary" onclick="fun()">Προσθήκη ερώτησης</button>
         <table class="table table-hover ">
-       <tr><th><div >Εκφώνηση</th><th> feedback</th><th>Βαθμός</th><th>Επίπεδο δυσκολίας</th></tr>
+       <tr><th><div >Εκφώνηση</th><th> Σωστή απάντηση</th><th>Βαθμός</th><th>Επίπεδο δυσκολίας</th></tr>
             <tbody id="exercise">
             </tbody>
         </table>
@@ -44,7 +44,7 @@ include "menu.php";
            <br><label for="askisi">Επεξεργασία quiz:</label></br>
            
            <br><input type="text" class="form-control" id="vocalization" name="vocalization" placeholder="Εκφώνηση" required></br>
-           <br><input type="text" class="form-control" id="feedback" name="feedback" placeholder="feedback" required></br>
+           <br><input type="text" class="form-control" id="feedback" name="feedback" placeholder="Σωστή απάντηση" required></br>
            <br><input type="text" class="form-control" id="points" name="points" placeholder="Βαθμός" required></br>
            <br><input type="text" class="form-control" id="levelofdifficulty" name="levelofdifficulty" placeholder="Επίπεδο δυσκολίας" required></br>
               </div>

@@ -33,7 +33,7 @@
         <li><a href="diaxeirisi_mathiton.php">Διαχείρηση μαθητών</a></li>
         <li><a href="professor_mathimata.php">Τα μαθήματά μου</a></li> 
         <li><a href="professor_quiz1.php">Τα quiz μου</a></li>
-        <li><a href="professor_stats5.php">Στατιστικά </a></li>
+        <li><a href="professor_stats1.php">Στατιστικά επιτυχίας </a></li>
            
 
 <?php 
@@ -48,7 +48,7 @@
 
 <li><a href="student_courses.php">Courses</a></li>
 <li><a href="student_mycourses.php">MyCourses</a></li>
-<li><a href="student_stats2.php">Στατιστικά</a></li>
+<li><a href="student_stats1.php">Στατιστικά</a></li>
 
        
 <?php
@@ -57,23 +57,16 @@
     ?>
     
   
-
+<?php echo $_SESSION['typeuser']; ?>;  
+<?php echo $_SESSION['email']; ?>;  
  
 
 
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-
-        <!-- Display email and typeuser -->
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> 
-          <?php 
-            echo htmlspecialchars($_SESSION['email']); // Display the email safely
-            echo " (" . htmlspecialchars($_SESSION['typeuser']) . ")"; // Display typeuser
-          ?>
-        </a></li>
-
-        <li><a href="Logout.php"><span class="glyphicon glyphicon-log-out"></span> Αποσύνδεση</a></li>
+      
+        <li><a href="Logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </div>

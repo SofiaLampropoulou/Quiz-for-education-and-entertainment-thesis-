@@ -4,6 +4,6 @@ session_start();
 
 ?>
 <script>
-    window.location.href="index5.html";
+    window.location.href="index.html";
 
 </script>

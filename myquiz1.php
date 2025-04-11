@@ -52,7 +52,14 @@ include "menu.php";
            
            <br><input type="int" class="form-control" id="vash" name="vash" placeholder="Βάση" required></br>
 
-           <br><input type="int" class="form-control" id="visibility" name="visibility" placeholder="Ορατότητα (Επέλεγε 0 για να μην είναι ορατό στο μαθητή ή 1 για να είναι)" required></br>
+            <!-- Visibility dropdown -->
+        <br>
+        <label for="visibility">Ορατότητα:</label>
+        <select class="form-control" id="visibility" name="visibility" required>
+            <option value="0">Κρυφό</option>
+            <option value="1">Ορατό</option>
+        </select>
+        <br>
               </div>
              
               <button type="submit" class="btn btn-success">Αποθήκευση</button> 
@@ -91,11 +98,12 @@ var id=<?php echo $_GET['id']; ?>;
                 $("#quiz").html("");
                     for (i=0;i<res.length;i++)
                     {
+                        let visibilityText = res[i].visibility == 1 ? "Ορατό" : "Κρυφό";
                         $("#quiz").append(`<tr><td>${res[i].title}</td>
                         <td>${res[i].total_time}</td>
                         <td>${res[i].date_of_creation}</td>
                         <td>${res[i].vash}</td>
-                        <td>${res[i].visibility}</td>
+                        <td>${res[i].visibilityText}</td>
                         <td><a href='epquiz.php?id=${res[i].id}'><button >Επεξεργασία</button></a></td>
                         <td><button onclick='del(${res[i].id})'>Διαγραφή</button></td> `)
 

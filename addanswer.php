@@ -12,15 +12,17 @@ include "menu.php";
  <h1 id="title3"></h1>
  <div class="othoni">
  <h1>Γράψτε τις απαντήσεις σας.</h1>
-        
+
    
     <button class="btn btn-primary" data-toggle="modal" data-target="#answerModal">Προσθήκη απάντησης</button>
-        <table class="table table-hover ">
+      
+    <table class="table table-hover ">
        <tr><th><div >Απάντηση</th><th> Σωστή/Λάθος</th></tr>
             <tbody id="answer">
             </tbody>
         </table>
     </div>
+ 
     </div>
 </div>
 
@@ -43,7 +45,10 @@ include "menu.php";
            <br> <input type="text" class="form-control" id="text_of_answer" name="text_of_answer" placeholder="Απάντηση" required></br>
          
           
-           <br><input type="text" class="form-control" id="true_false" name="true_false" placeholder="Σωστή(ΝΑΙ)/Λάθος(ΟΧΙ)" required></br>
+           <br><select  class="form-control" id="true_false" name="true_false" required>
+        <option value=0>Λάθος</option>
+        <option value=1>Σωστή</option>
+</select></br>
             
               </div>
              
@@ -69,21 +74,26 @@ var id=<?php echo $_GET['id']; ?>;
             event.preventDefault();
           $.post("api.php?c=newanswer&id="+id,$("#formans").serialize(),(res)=>{
             $("#answerModal").modal("hide");
+            $('#formans')[0].reset();
             showanswers();
           })
         })
 
         function showanswers(){
-            $.getJSON("api.php?c=allanswers",(res)=>{
+            $.getJSON("api.php?c=allanswers&id="+id,(res)=>{
                 $("#answer").html("");
                     for (i=0;i<res.length;i++)
                     {
+
+                        
                         $("#answer").append(`<tr><td>${res[i].text_of_answer}</td>
-                        <td>${res[i].true_false}</td>
+                        <td>${ res[i].true_false==1?"Σωστή":"Λάθος" }</td>
                         <td><button onclick='del(${res[i].id})'>Διαγραφή</button></td> `)
 
                     }
+                   
             })
+            
         }
 
         function del(id)
@@ -102,5 +112,6 @@ var id=<?php echo $_GET['id']; ?>;
         $.getJSON("api.php?c=oneexercise&id="+id,(res)=>{
             $("#title3").html(res[0].name)
         });
+       //<td><a href='epquiz.php?'><button >Πίσω</button></a></td>  
 </script>
-   
+

@@ -84,19 +84,23 @@ include "menu.php";
             event.preventDefault();
           $.post("api.php?c=newcategory",$("#formc").serialize(),(res)=>{
             $("#catModal").modal("hide");
+             // Reset the form
+            $('#formc')[0].reset();
             showcategories();
+             
           })
+         
         })
 
 
         function showcategories(){
-            $.getJSON("api.php?c=allcategories",(res)=>{
+            $.getJSON("api.php?c=mycategories",(res)=>{
                 $("#categories").html("");
                     for (i=0;i<res.length;i++)
                     {
                         $("#categories").append(`<tr><td>${res[i].name}</td><td>${res[i].description}</td>
                         <td><a href='myquiz.php?id=${res[i].id}'><button >Quizes</button></a>
-                        
+                       
                         <button onclick='del(${res[i].id})'>Διαγραφή</button></td>`)
                     }
                         });
@@ -105,7 +109,7 @@ include "menu.php";
       
         function del(id)
         {
-            c=confirm("Θέλετε σίγουρα να διαγράψετε αυτό το quiz;");
+            c=confirm("Θέλετε σίγουρα να διαγράψετε αυτό το μάθημα;");
             if(c)
             {
                 $.get("api.php?c=delmathima&id="+id,(res)=>{
